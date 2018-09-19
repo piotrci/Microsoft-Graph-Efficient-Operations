@@ -14,7 +14,7 @@ namespace EfficientRequestHandling
 
         static GraphNetworkHelpers()
         {
-            httpClient.Timeout = TimeSpan.FromMinutes(3);
+            httpClient.Timeout = TimeSpan.FromMinutes(1);
         }
 
         private const int maxThrottlingRetries = 3;
