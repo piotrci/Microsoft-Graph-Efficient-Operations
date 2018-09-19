@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EfficientGraphOperations.ResponseHandlers
+namespace EfficientRequestHandling.ResponseHandlers
 {
     public class OperationResult<TEntity>
     {

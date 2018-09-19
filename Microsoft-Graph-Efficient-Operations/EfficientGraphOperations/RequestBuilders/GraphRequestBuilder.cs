@@ -1,5 +1,5 @@
-﻿using EfficientGraphOperations.RequestManagement;
-using EfficientGraphOperations.ResponseHandlers;
+﻿using EfficientRequestHandling.RequestManagement;
+using EfficientRequestHandling.ResponseHandlers;
 using Microsoft.Graph;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace EfficientGraphOperations.RequestBuilders
+namespace EfficientRequestHandling.RequestBuilders
 {
     /// <summary>
     /// A dummy graph client allows us to use the SDK code to create requests without actually sending them to the service.

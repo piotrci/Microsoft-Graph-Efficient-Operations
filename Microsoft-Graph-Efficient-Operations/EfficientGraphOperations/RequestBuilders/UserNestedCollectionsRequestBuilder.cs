@@ -1,5 +1,5 @@
-﻿using EfficientGraphOperations.RequestManagement;
-using EfficientGraphOperations.ResponseHandlers;
+﻿using EfficientRequestHandling.RequestManagement;
+using EfficientRequestHandling.ResponseHandlers;
 using Microsoft.Graph;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EfficientGraphOperations.RequestBuilders
+namespace EfficientRequestHandling.RequestBuilders
 {
     public class UserNestedCollectionsRequestBuilder : NestedRequestBuilder<User>
     {

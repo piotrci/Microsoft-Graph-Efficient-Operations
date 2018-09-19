@@ -1,8 +1,8 @@
-﻿using EfficientGraphOperations.RequestBuilders;
-using EfficientGraphOperations.RequestManagement;
+﻿using EfficientRequestHandling.RequestBuilders;
+using EfficientRequestHandling.RequestManagement;
 using Microsoft.Graph;
 
-namespace EfficientGraphOperations.ResponseHandlers
+namespace EfficientRequestHandling.ResponseHandlers
 {
     class GroupMembershipResponseHandler : CollectionWithNestingResponseHandler<Group, DirectoryObject>
     {

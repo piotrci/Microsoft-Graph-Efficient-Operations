@@ -1,10 +1,10 @@
-﻿using EfficientGraphOperations.RequestManagement;
-using EfficientGraphOperations.ResponseHandlers;
-using EfficientGraphOperations.RequestBuilders;
+﻿using EfficientRequestHandling.RequestManagement;
+using EfficientRequestHandling.ResponseHandlers;
+using EfficientRequestHandling.RequestBuilders;
 using Microsoft.Graph;
 using System.Collections.Generic;
 using System;
-using EfficientGraphOperations;
+using EfficientRequestHandling;
 
 namespace ExampleScenarios
 {

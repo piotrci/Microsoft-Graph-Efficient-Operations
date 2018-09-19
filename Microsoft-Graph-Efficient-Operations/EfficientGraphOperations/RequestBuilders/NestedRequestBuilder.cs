@@ -1,10 +1,10 @@
-﻿using EfficientGraphOperations.RequestManagement;
+﻿using EfficientRequestHandling.RequestManagement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using EfficientGraphOperations.RequestManagement;
-using EfficientGraphOperations.ResponseHandlers;
+using EfficientRequestHandling.RequestManagement;
+using EfficientRequestHandling.ResponseHandlers;
 using Microsoft.Graph;
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EfficientGraphOperations.RequestBuilders
+namespace EfficientRequestHandling.RequestBuilders
 {
     public abstract class NestedRequestBuilder<TParentEntity> : IDisposable
     {

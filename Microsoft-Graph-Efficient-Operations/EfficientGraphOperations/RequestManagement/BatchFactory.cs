@@ -9,7 +9,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EfficientGraphOperations.RequestManagement
+namespace EfficientRequestHandling.RequestManagement
 {
     static class BatchFactory
     {

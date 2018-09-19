@@ -1,5 +1,5 @@
-﻿using EfficientGraphOperations.RequestBuilders;
-using EfficientGraphOperations.RequestManagement;
+﻿using EfficientRequestHandling.RequestBuilders;
+using EfficientRequestHandling.RequestManagement;
 using Microsoft.Graph;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EfficientGraphOperations.ResponseHandlers
+namespace EfficientRequestHandling.ResponseHandlers
 {
     public class GroupCollectionResponseHandler : CollectionResponseHandler<Group, GraphServiceGroupsCollectionResponse>
     {

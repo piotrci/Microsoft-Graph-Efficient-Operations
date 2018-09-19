@@ -1,5 +1,5 @@
-﻿using EfficientGraphOperations.RequestBuilders;
-using EfficientGraphOperations.RequestManagement;
+﻿using EfficientRequestHandling.RequestBuilders;
+using EfficientRequestHandling.RequestManagement;
 using Microsoft.Graph;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace EfficientGraphOperations.ResponseHandlers
+namespace EfficientRequestHandling.ResponseHandlers
 {
     /// <summary>
     /// Unlike in other collection handlers, we ignore @odata.nextLink and do not "page" through the collection, because we can generate our own based on the partitioning scheme 

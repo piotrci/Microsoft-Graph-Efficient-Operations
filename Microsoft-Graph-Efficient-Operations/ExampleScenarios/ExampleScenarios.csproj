@@ -61,9 +61,9 @@
     <Compile Include="UserScenarios.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EfficientGraphOperations\EfficientGraphOperations.csproj">
+    <ProjectReference Include="..\EfficientGraphOperations\EfficientRequestHandling.csproj">
       <Project>{77c952e9-2103-4a5f-a023-76290fe71340}</Project>
-      <Name>EfficientGraphOperations</Name>
+      <Name>EfficientRequestHandling</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

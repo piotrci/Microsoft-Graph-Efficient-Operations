@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EfficientGraphOperations
+namespace EfficientRequestHandling
 {
     public static class Logger
     {

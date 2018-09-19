@@ -1,5 +1,5 @@
-﻿using EfficientGraphOperations.RequestManagement;
-using EfficientGraphOperations.ResponseHandlers;
+﻿using EfficientRequestHandling.RequestManagement;
+using EfficientRequestHandling.ResponseHandlers;
 using System;
 using System.Collections.Generic;
 using System.Linq;

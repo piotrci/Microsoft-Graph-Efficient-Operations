@@ -1,11 +1,11 @@
-﻿using EfficientGraphOperations.RequestBuilders;
-using EfficientGraphOperations.RequestManagement;
+﻿using EfficientRequestHandling.RequestBuilders;
+using EfficientRequestHandling.RequestManagement;
 using Microsoft.Graph;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 
-namespace EfficientGraphOperations.ResponseHandlers
+namespace EfficientRequestHandling.ResponseHandlers
 {
     abstract class CollectionWithNestingResponseHandler<TParentEntity, UNestedEntity> : BaseResponseHandler<TParentEntity>
     {

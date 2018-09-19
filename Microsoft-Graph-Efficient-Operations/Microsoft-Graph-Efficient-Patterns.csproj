@@ -100,9 +100,9 @@
     <Analyzer Include="packages\AsyncUsageAnalyzers.1.0.0-alpha003\analyzers\dotnet\AsyncUsageAnalyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="EfficientGraphOperations\EfficientGraphOperations.csproj">
+    <ProjectReference Include="EfficientGraphOperations\EfficientRequestHandling.csproj">
       <Project>{77c952e9-2103-4a5f-a023-76290fe71340}</Project>
-      <Name>EfficientGraphOperations</Name>
+      <Name>EfficientRequestHandling</Name>
     </ProjectReference>
     <ProjectReference Include="ExampleScenarios\ExampleScenarios.csproj">
       <Project>{2ad12abf-f9d9-4a2b-9736-f7d398e7c1ee}</Project>

@@ -1,10 +1,10 @@
-﻿using EfficientGraphOperations.RequestBuilders;
-using EfficientGraphOperations.RequestManagement;
+﻿using EfficientRequestHandling.RequestBuilders;
+using EfficientRequestHandling.RequestManagement;
 using Microsoft.Graph;
 using System.Net.Http;
 using System.Threading;
 
-namespace EfficientGraphOperations.ResponseHandlers
+namespace EfficientRequestHandling.ResponseHandlers
 {
     public class SingleOperationResponseHandler<TEntity> : BaseResponseHandler<OperationResult<TEntity>>
     {

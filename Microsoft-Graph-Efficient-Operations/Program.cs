@@ -1,6 +1,6 @@
-﻿using EfficientGraphOperations;
-using EfficientGraphOperations.RequestManagement;
-using EfficientGraphOperations.ResponseHandlers;
+﻿using EfficientRequestHandling;
+using EfficientRequestHandling.RequestManagement;
+using EfficientRequestHandling.ResponseHandlers;
 using ExampleScenarios;
 using Microsoft.Graph;
 using Microsoft.Identity.Client;
@@ -26,9 +26,9 @@ namespace MicrosoftGraphEfficientPatterns
                 var authProvider = AuthSettings.isUserAuthentication ? (MyAuthenticationProvider)new UserAuthenticationProvider() : (MyAuthenticationProvider)new AppOnlyAuthenticationProvider();
                 GraphServiceClient client = GetAuthenticatedClient(authProvider);
 
-                EfficientGraphOperations.Logger.SetLogger(new OutputLogger(Console.OpenStandardOutput(), System.IO.File.Open("log.txt", FileMode.Create, FileAccess.Write, FileShare.Read)));
+                EfficientRequestHandling.Logger.SetLogger(new OutputLogger(Console.OpenStandardOutput(), System.IO.File.Open("log.txt", FileMode.Create, FileAccess.Write, FileShare.Read)));
 
-                goto createGroups;
+                goto allUsers;
 
                 #region User scenarios
                 allUsers: ExecuteOperationWithPerfMeasurement(client,
@@ -183,7 +183,7 @@ namespace MicrosoftGraphEfficientPatterns
             }
             finally
             {
-                EfficientGraphOperations.Logger.FlushAndCloseLogs();
+                EfficientRequestHandling.Logger.FlushAndCloseLogs();
             }
         }
 
@@ -191,7 +191,7 @@ namespace MicrosoftGraphEfficientPatterns
         {
             using (var rm = new RequestManager(client, concurrencyLimit, batchSize))
             {
-                EfficientGraphOperations.Logger.WriteLine($"Starting: {openingTitle}");
+                EfficientRequestHandling.Logger.WriteLine($"Starting: {openingTitle}");
                 var stopWatch = Stopwatch.StartNew();
                 string summary = String.Empty;
                 try
@@ -205,7 +205,7 @@ namespace MicrosoftGraphEfficientPatterns
                 }
                 finally
                 {
-                    EfficientGraphOperations.Logger.WriteLine($"Finished. Time elapsed: {stopWatch.Elapsed.ToString("c")}. Summary: {summary}.");
+                    EfficientRequestHandling.Logger.WriteLine($"Finished. Time elapsed: {stopWatch.Elapsed.ToString("c")}. Summary: {summary}.");
                 }
             }
         }

@@ -8,7 +8,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace EfficientGraphOperations.RequestManagement
+namespace EfficientRequestHandling.RequestManagement
 {
     public delegate void ResponseCallback(HttpResponseMessage message);
     public class RequestManager : IDisposable
