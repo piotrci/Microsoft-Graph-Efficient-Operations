@@ -81,13 +81,6 @@ namespace EfficientRequestHandling.RequestBuilders
             results = ra;
             return new GraphRequestBuilder<User>(ra, () => new UserMailboxResponseHandler(u, rm, ra));
         }
-        public static GraphRequestBuilder<TResult> GetBuilderForNestedCollection<TParentEntity, UNestedEntity>(TParentEntity parentItem, RequestManager rm, out IEnumerable<TParentEntity> results)
-        {
-            throw new NotImplementedException("this approach won't work due to the fact that the result aggregator needs to be shared....");
-            var ra = new ResultAggregator<TParentEntity>(rm.GetCancellationToken());
-            results = ra;
-            //return new GraphRequestBuilder<TParentEntity>(ra, () => CollectionWithNestingResponseHandler<TParentEntity, UNestedEntity>.GetHandler(parentItem, ;
-        }
         #endregion
     }
 }

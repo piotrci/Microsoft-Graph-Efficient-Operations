@@ -50,22 +50,5 @@ namespace EfficientRequestHandling.ResponseHandlers
             // this handler does not process its own responses, it uses the child handler it created in the constructor.
             throw new NotImplementedException();
         }
-        public static CollectionWithNestingResponseHandler<TParentEntity, UNestedEntity> GetHandler(TParentEntity parent, RequestManager rm, ResultAggregator<TParentEntity> ra)
-        {
-            throw new NotImplementedException();
-            object handler;
-            switch (typeof(TParentEntity))
-            {
-                case Type t when t == typeof(GroupMembershipResponseHandler):
-                    handler = new GroupMembershipResponseHandler(parent as Group, rm, ra as ResultAggregator<Group>);
-                    break;
-                case Type t when t == typeof(UserMailboxResponseHandler):
-                    handler = new UserMailboxResponseHandler(parent as User, rm, ra as ResultAggregator<User>);
-                    break;
-                default:
-                    throw new NotImplementedException($"Type is not implemented by this factory. The factory needs to be updated");
-            }
-            return (CollectionWithNestingResponseHandler<TParentEntity, UNestedEntity>)handler;
-        }
     }
 }
