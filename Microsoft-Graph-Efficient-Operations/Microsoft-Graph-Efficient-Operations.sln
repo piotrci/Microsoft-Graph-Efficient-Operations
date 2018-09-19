@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoApp", "DemoApp.csproj",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfficientRequestHandling", "EfficientGraphOperations\EfficientRequestHandling.csproj", "{77C952E9-2103-4A5F-A023-76290FE71340}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScenarioImplementations", "ExampleScenarios\ScenarioImplementations.csproj", "{2AD12ABF-F9D9-4A2B-9736-F7D398E7C1EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScenarioImplementations", "ScenarioImplementations\ScenarioImplementations.csproj", "{2AD12ABF-F9D9-4A2B-9736-F7D398E7C1EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

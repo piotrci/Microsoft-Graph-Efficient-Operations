@@ -74,10 +74,6 @@
       <Project>{77c952e9-2103-4a5f-a023-76290fe71340}</Project>
       <Name>EfficientRequestHandling</Name>
     </ProjectReference>
-    <ProjectReference Include="ExampleScenarios\ScenarioImplementations.csproj">
-      <Project>{2ad12abf-f9d9-4a2b-9736-f7d398e7c1ee}</Project>
-      <Name>ScenarioImplementations</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
