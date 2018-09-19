@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MicrosoftGraphEfficientPatterns
+namespace DemoApp
 {
     public class OutputLogger : IDisposable, ILogger
     {

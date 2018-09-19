@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MicrosoftGraphEfficientPatterns
+namespace DemoApp
 {
     /// <summary>
     /// This class stores your SECRET app and tenat details to be used for authentication.

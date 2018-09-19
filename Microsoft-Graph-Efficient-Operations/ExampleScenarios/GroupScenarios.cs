@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System;
 using EfficientRequestHandling;
 
-namespace ExampleScenarios
+namespace ScenarioImplementations
 {
     public static class GroupScenarios
     {

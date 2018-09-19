@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft-Graph-Efficient-Patterns", "Microsoft-Graph-Efficient-Patterns.csproj", "{93309FA7-605B-4094-85BE-78E93A4DA640}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoApp", "DemoApp.csproj", "{93309FA7-605B-4094-85BE-78E93A4DA640}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfficientRequestHandling", "EfficientGraphOperations\EfficientRequestHandling.csproj", "{77C952E9-2103-4A5F-A023-76290FE71340}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleScenarios", "ExampleScenarios\ExampleScenarios.csproj", "{2AD12ABF-F9D9-4A2B-9736-F7D398E7C1EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScenarioImplementations", "ExampleScenarios\ScenarioImplementations.csproj", "{2AD12ABF-F9D9-4A2B-9736-F7D398E7C1EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

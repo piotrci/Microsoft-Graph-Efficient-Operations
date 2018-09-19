@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Graph;
 
-namespace ExampleScenarios
+namespace ScenarioImplementations
 {
     public class DeltaQueryScenarios
     {

@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using EfficientRequestHandling;
 
-namespace ExampleScenarios
+namespace ScenarioImplementations
 {
     public static class TestDataSetup
     {

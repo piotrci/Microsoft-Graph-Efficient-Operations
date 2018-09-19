@@ -1,7 +1,7 @@
 ﻿using EfficientRequestHandling;
 using EfficientRequestHandling.RequestManagement;
 using EfficientRequestHandling.ResponseHandlers;
-using ExampleScenarios;
+using ScenarioImplementations;
 using Microsoft.Graph;
 using Microsoft.Identity.Client;
 using System;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace MicrosoftGraphEfficientPatterns
+namespace DemoApp
 {
     class Program
     {

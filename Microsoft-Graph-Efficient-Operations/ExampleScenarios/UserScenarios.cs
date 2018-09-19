@@ -5,7 +5,7 @@ using Microsoft.Graph;
 using System.Collections.Generic;
 using EfficientRequestHandling;
 
-namespace ExampleScenarios
+namespace ScenarioImplementations
 {
     public static class UserScenarios
     {

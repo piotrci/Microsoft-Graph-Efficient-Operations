@@ -1,6 +1,6 @@
 ﻿using Microsoft.Graph;
 using Microsoft.Identity.Client;
-using MicrosoftGraphEfficientPatterns;
+using DemoApp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MicrosoftGraphEfficientPatterns
+namespace DemoApp
 {
     abstract class MyAuthenticationProvider
     {

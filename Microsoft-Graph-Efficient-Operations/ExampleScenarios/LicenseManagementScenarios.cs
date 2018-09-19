@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using EfficientRequestHandling;
 
-namespace ExampleScenarios
+namespace ScenarioImplementations
 {
     public static class LicenseManagementScenarios
     {

@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using EfficientRequestHandling;
 
-namespace ExampleScenarios
+namespace ScenarioImplementations
 {
     public static class EmailScenarios
     {
