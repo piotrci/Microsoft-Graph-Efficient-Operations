@@ -7,8 +7,8 @@
     <ProjectGuid>{77C952E9-2103-4A5F-A023-76290FE71340}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EfficientGraphOperations</RootNamespace>
-    <AssemblyName>EfficientGraphOperations</AssemblyName>
+    <RootNamespace>EfficientRequestHandling</RootNamespace>
+    <AssemblyName>EfficientRequestHandling</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

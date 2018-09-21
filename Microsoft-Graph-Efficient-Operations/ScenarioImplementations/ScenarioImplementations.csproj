@@ -7,8 +7,8 @@
     <ProjectGuid>{2AD12ABF-F9D9-4A2B-9736-F7D398E7C1EE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ExampleScenarios</RootNamespace>
-    <AssemblyName>ExampleScenarios</AssemblyName>
+    <RootNamespace>ScenarioImplementations</RootNamespace>
+    <AssemblyName>ScenarioImplementations</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
