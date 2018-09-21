@@ -77,7 +77,7 @@ namespace DemoApp
                  {
                      var report = DeviceScenarios.GetDeviceReport(requestManager);
                      return $"Finished generating device report:\n{report}";
-                 });
+                 }, batchSize: 1);
 
                 return;
 
