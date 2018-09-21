@@ -123,7 +123,7 @@ namespace ScenarioImplementations
 
         public static IEnumerable<OperationResult<User>> DeleteAllUsers(RequestManager requestManager)
         {
-            //throw new NotImplementedException("You do not want to execute this by accident!");
+            throw new NotImplementedException("You do not want to execute this by accident!");
             // Step 1: start downloading user objects using partitioning
             // This will return users as they become available from concurrent response handlers
             IEnumerable<User> users;
