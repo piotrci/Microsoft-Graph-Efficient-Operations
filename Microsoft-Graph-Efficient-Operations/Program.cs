@@ -31,7 +31,7 @@ namespace DemoApp
                 EfficientRequestHandling.Logger.SetLogger(new OutputLogger(Console.OpenStandardOutput(), System.IO.File.Open("log.txt", FileMode.Create, FileAccess.Write, FileShare.Read)));
 
                 // go to a specific scenario
-                goto getDeviceReport;
+                goto getAllUsers;
 
 #pragma warning disable CS0164
 #pragma warning disable CS0162
@@ -75,9 +75,11 @@ namespace DemoApp
                  $"Downloading all device state to generate a report.",
                  (requestManager) =>
                  {
-                     var report = DeviceScenarios.GetDeviceReport(requestManager).ToArray();
-                     return $"Finished generating device report:{Environment.NewLine}{report}";
+                     var report = DeviceScenarios.GetDeviceReport(requestManager);
+                     return $"Finished generating device report:\n{report}";
                  });
+
+                return;
 
                 #endregion
 
