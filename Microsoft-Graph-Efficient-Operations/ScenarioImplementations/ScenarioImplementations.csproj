@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DeltaQueryScenarios.cs" />
+    <Compile Include="DeviceScenarios.cs" />
     <Compile Include="EmailScenarios.cs" />
     <Compile Include="GroupScenarios.cs" />
     <Compile Include="LicenseManagementScenarios.cs" />

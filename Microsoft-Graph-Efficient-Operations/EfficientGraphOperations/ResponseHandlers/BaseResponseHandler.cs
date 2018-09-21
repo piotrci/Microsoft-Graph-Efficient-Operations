@@ -84,8 +84,11 @@ namespace EfficientRequestHandling.ResponseHandlers
                 case Type t when t == typeof(MessageCollectionPartitioningResponseHandler):
                     handler = new MessageCollectionPartitioningResponseHandler(rm, ra as ResultAggregator<Message>);
                     break;
+                case Type t when t == typeof(DeviceCollectionResponseHandler):
+                    handler = new DeviceCollectionResponseHandler(rm, ra as ResultAggregator<Device>);
+                    break;
                 default:
-                    throw new NotImplementedException($"Type {handlerType.FullName} is not implemented by this factory. The factory needs to be updated");
+                    throw new NotImplementedException($"Type {handlerType.FullName} is not implemented by this factory. The factory needs to be updated.");
             }
             return (BaseResponseHandler<TResponse>)handler;
         }

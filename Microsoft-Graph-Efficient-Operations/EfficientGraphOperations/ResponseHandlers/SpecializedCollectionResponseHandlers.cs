@@ -100,4 +100,24 @@ namespace EfficientRequestHandling.ResponseHandlers
             return code == HttpStatusCode.NotFound;
         }
     }
+    public class DeviceCollectionResponseHandler : CollectionResponseHandler<Device, GraphServiceDevicesCollectionResponse>
+    {
+        public DeviceCollectionResponseHandler(RequestManager rm, ResultAggregator<Device> ra) : base(rm, ra) { }
+
+        protected override HttpRequestMessage GetNextPageRequest(GraphServiceDevicesCollectionResponse collectionResponse)
+        {
+            // retrieve nextLink, if exists
+            if (!collectionResponse.AdditionalData.TryGetValue("@odata.nextLink", out object nextLink))
+            {
+                return null;
+            }
+            collectionResponse.Value.InitializeNextPageRequest(this.requestManager.GraphClient, (string)nextLink);
+            return collectionResponse.Value.NextPageRequest.GetHttpRequestMessage();
+        }
+
+        protected override ICollectionPage<Device> GetPageItems(GraphServiceDevicesCollectionResponse collectionResponse)
+        {
+            return collectionResponse.Value;
+        }
+    }
 }

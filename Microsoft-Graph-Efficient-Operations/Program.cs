@@ -69,6 +69,20 @@ namespace DemoApp
                 return;
                 #endregion
 
+                #region Device scenarios
+
+                getDeviceReport: ExecuteScenarioWithPerfMeasurement(client,
+                 $"Downloading all device state to generate a report.",
+                 (requestManager) =>
+                 {
+                     var report = DeviceScenarios.GetDeviceReport(requestManager);
+                     return $"Finished generating device report:\n{report}";
+                 }, batchSize: 1);
+
+                return;
+
+                #endregion
+
                 #region Email scenarios
                 getAllEmailsForOneUser: ExecuteScenarioWithPerfMeasurement(client,
                   $"Geting all emails for a single user.",
