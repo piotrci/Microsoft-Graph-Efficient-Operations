@@ -31,7 +31,7 @@ namespace DemoApp
                 EfficientRequestHandling.Logger.SetLogger(new OutputLogger(Console.OpenStandardOutput(), System.IO.File.Open("log.txt", FileMode.Create, FileAccess.Write, FileShare.Read)));
 
                 // go to a specific scenario
-                goto getAllUsers;
+                goto getDeviceReport;
 
 #pragma warning disable CS0164
 #pragma warning disable CS0162
@@ -67,6 +67,18 @@ namespace DemoApp
                  }, batchSize: 1);         // using batchSize=1 since this is more optimal with the paritioning approach used by this scenario.
 
                 return;
+                #endregion
+
+                #region Device scenarios
+
+                getDeviceReport: ExecuteScenarioWithPerfMeasurement(client,
+                 $"Downloading all device state to generate a report.",
+                 (requestManager) =>
+                 {
+                     var report = DeviceScenarios.GetDeviceReport(requestManager).ToArray();
+                     return $"Finished generating device report:{Environment.NewLine}{report}";
+                 });
+
                 #endregion
 
                 #region Email scenarios
