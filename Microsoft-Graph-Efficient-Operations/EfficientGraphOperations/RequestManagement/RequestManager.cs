@@ -22,7 +22,7 @@ namespace EfficientRequestHandling.RequestManagement
                 throw new ArgumentException($"{nameof(batchSize)} has to be between 1 and 20. Value passed: {batchSize} is incorrect.");
             }
             this.batchSize = batchSize;
-            if (concurrencyLevel > 20 || concurrencyLevel < 1)
+            if (concurrencyLevel > 32 || concurrencyLevel < 1)
             {
                 throw new ArgumentException($"{nameof(concurrencyLevel)} has to be between 1 and 20. Value passed: {concurrencyLevel} is incorrect.");
             }
