@@ -18,7 +18,7 @@ namespace DemoApp
         static void Main(string[] args)
         {
             // configure more open connections to graph, so we can leverage concurrency.
-            ServicePointManager.DefaultConnectionLimit = 16;
+            ServicePointManager.DefaultConnectionLimit = 32;
             ServicePointManager.ReusePort = true;
 
             try
