@@ -16,6 +16,10 @@ namespace ScenarioImplementations
         /// Currently, it turns out that setting batchSize to 1 (essentially disabling batching), combined with a high concurrencyLevel (say 16), 
         /// results in best performance for GET operations
         /// </param>
+        /// <remarks>
+        /// Graph permissions required:
+        /// https://developer.microsoft.com/en-us/graph/docs/api-reference/v1.0/api/user_list
+        /// </remarks>
         /// <returns></returns>
         public static IEnumerable<User> GetAllUsers(RequestManager requestManager)
         {
@@ -44,6 +48,15 @@ namespace ScenarioImplementations
             }
             return users;
         }
+        /// <summary>
+        /// This demonstrates the traditional, "simple but slow" method of enumerating a collection. It can be used for comparison with the optimized approach.
+        /// </summary>
+        /// <param name="client"></param>
+        /// /// <remarks>
+        /// Graph permissions required:
+        /// https://developer.microsoft.com/en-us/graph/docs/api-reference/v1.0/api/user_list
+        /// </remarks>
+        /// <returns></returns>
         public static IEnumerable<User> GetAllUsersBasic(GraphServiceClient client)
         {
             int currentCount = 0;
