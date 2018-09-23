@@ -67,7 +67,14 @@ namespace ScenarioImplementations
             var product = allProducts.First(p => p.SkuPartNumber.Equals(skuPartNumber, StringComparison.OrdinalIgnoreCase));
             return product.SkuId.Value;
         }
-        public static IEnumerable<User> AssignLicensesToUsersBasicApproach(GraphServiceClient client, string skuPartNumber, IEnumerable<User> users)
+        /// <summary>
+        /// Demonstrates the basic approach to license management operations: we process one user request at a time, without any optimizations
+        /// </summary>
+        /// <param name="client"></param>
+        /// <param name="users">A collection of users for whom to add the license. Note that we only really need the Id value of each user, so this method could be refactored.</param>
+        /// <param name="skuPartNumber">The name of the product, e.g. "ENTERPRISEPACK" for Office365 E3. We resolve this later to a SKU id (guid)</param>
+        /// <returns></returns>
+        public static IEnumerable<User> AssignLicensesToUsersBasic(GraphServiceClient client, string skuPartNumber, IEnumerable<User> users)
         {
             var licenseId = GetLicenseId(client, skuPartNumber);
             var licensesToAssign = new[] { new AssignedLicense { SkuId = licenseId, DisabledPlans = new Guid[0] } };
@@ -75,6 +82,7 @@ namespace ScenarioImplementations
 
             foreach (var user in users)
             {
+                // Executes the request synchronously 
                 results.Add(client.Users[user.Id].AssignLicense(licensesToAssign, new Guid[0]).Request().ReturnNoContent().PostAsync().Result);
             }
             return results;

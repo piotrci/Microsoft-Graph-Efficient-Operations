@@ -156,7 +156,7 @@ namespace DemoApp
                   (requestManager) =>
                   {
                       var users = UserScenarios.GetAllUsers(requestManager).Take(1000).ToArray();
-                      var results = LicenseManagementScenarios.AssignLicensesToUsersBasicApproach(client, "POWER_BI_STANDARD",
+                      var results = LicenseManagementScenarios.AssignLicensesToUsersBasic(client, "POWER_BI_STANDARD",
                           users).ToArray();
                       return $"Processed {results.Length}.";
                   });
