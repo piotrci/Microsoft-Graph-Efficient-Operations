@@ -46,6 +46,8 @@ namespace ScenarioImplementations
                     // queue up another request (internally) until all pages are retrieved.
                 }
             }
+            // Note that at this point we have not fully fetched all results. This collection can be enumerated and will block if more results are incoming.
+            // E.g. you could say users.ToArray() to wait for all results, or use foreach and gradually process results as they become available.
             return users;
         }
         /// <summary>
@@ -60,9 +62,11 @@ namespace ScenarioImplementations
         public static IEnumerable<User> GetAllUsersBasic(GraphServiceClient client)
         {
             int currentCount = 0;
+            // The initial request for the first page of results
             var request = client.Users.Request().Top(999);
             while (request != null)
             {
+                // Execute the request synchronously
                 var response = request.GetAsync().Result;
                 foreach (var item in response)
                 {
@@ -72,6 +76,7 @@ namespace ScenarioImplementations
                     }
                     yield return item;
                 }
+                // Get the request for the next page of results. thiss will be null if there are no more pages
                 request = response.NextPageRequest;
             }
         }
