@@ -46,7 +46,7 @@ namespace ScenarioImplementations
             // This collection will contain groups with fully populated Members property
             IEnumerable<Group> groupsWithMembers;
 
-            // This builder supports creation of requests for group memberships.
+            // This builder supports creation of requests for collections embedded in the Group object, such as Members
             using (var builder = GroupNestedCollectionsRequestBuilder.GetBuilder(requestManager, out groupsWithMembers))
             {
                 // For each group object that has been downloaded we can now create a request. Note that the "groups" collection will block the thread
