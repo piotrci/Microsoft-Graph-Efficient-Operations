@@ -2,18 +2,34 @@
 
 Code demonstrating how you can efficiently access and modify Microsoft 365 data using Microsoft Graph APIs. Parallelization and batching patterns are demonstrated.
 
-## TBD: Overview
+## Overview
 
 This console application can be used to execute sample scenarios that perform bulk operations on tenant's Microsoft 365 data, such as users, groups, email messages, etc, using Microsoft Graph APIs($$$link to MS Graph website).
 
 The implementation demonstrates how we can optimize interaction with Graph to drammatically reduce the time of bulk operations at scale. For example, using a traditional, sequential approach it takes around 5.5 minutes to get 100,000 users using Graph or the equivalent PowerShell cmdlets (e.g. Get-AzureAdUser). Using parallelization and batching, as shown in `UserScenarios.GetAllUsers` it takes only  18 seconds (a 18X improvement in execution time).
 
-$$$Reference the Ignite talk
+Check out this Microsoft Ignite 2018 talk for an overview of this approach: [THR2159 - How to perform large scale operations efficiently using Microsoft Graph](https://myignite.techcommunity.microsoft.com/sessions/65997?source=sessions#ignite-html-anchor)
 
 ## TBD: How to make this run (e.g. set up your app and authentication)
 
-$$$note that user sign in is from scratch everytime
-$$$warning about modifying data
+You can play around with the samples scenarios by executing the `DemoApp` console application. The code supports simple authentication using either user delegated mode (where the code runs under user permissions) or app-only mode (the app itself has permissions and does not require user sign in). Both are useful depending on the scenarios you want to try out (e.g. to be able to get all users' mailboxes you must use app only permissions, with admin consent).
+
+The project contains a file `AuthSettings.cs` which defines some app and authentication related fields. You should create a **local only** file `AuthSettingsLocal.cs` and make sure it is listed in `.gitignore` so you do not accidentally commit any secrets or other private data into the repo.
+
+In this file, define the constructor for the partial class and set the values of the various properties:
+
+```csharp
+ static partial class AuthSettings
+    {
+        static AuthSettings()
+        {
+            isUserAuthentication = <true/false>;                    // controls if we will try to authenticate as user, or as app. depends on the type of app and permissions you are using
+            applicationId = <guid>;                           // the Guid ID of your app registered with Azure AD
+            scopes = <a string array>;                              // if the app uses delegated (user) permissions, list the scopes it needs to request here. otherwise, leave null
+            secretClientCredentials = new ClientCredential(<the app secret or certificate>); ;     // initialize your secret client credentials. Certificate or "app password"
+            tenantId = <guid>;                                // the Guid ID of the tenant against which you will execute Graph calls.
+        }
+```
 
 ## Design details
 
