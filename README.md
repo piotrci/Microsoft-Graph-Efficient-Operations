@@ -10,6 +10,10 @@ The implementation demonstrates how we can optimize interaction with Graph to dr
 
 $$$Reference the Ignite talk
 
+## TBD: How to make this run (e.g. set up your app and authentication)
+
+## Design details
+
 These are the main components of the solution:
 
 ### EfficientRequestHandling
@@ -22,10 +26,23 @@ The main goal of the `RequestManager` is to abstract away the complexity of para
 
 Note that since `RequestManager` is agnostic of the types of requests it processes, you can use a single instance to queue many different requests, in any order. The manager will process them from the queue, and may batch them together. You can create separate instances of the manager if you want to handle different types of requests separately, for example to differently configure the level of concurrency or the size of batches.
 
-#### RequestBuilder
+You use the `Dispose()` method to tell the manager when to stop accepting more requests to the queue and start completing all outstanding requests. It's a good idea to instantiate the manager in a `using` block to make sure it terminates correctly.
 
-$$$Mention the hacky interception from SDK
-####
+#### GraphRequestBuilder
+
+The `GraphRequestBuilder` allows you to use standard Graph client SDK syntax to build your requests. This is a great alternative to constructing your own REST requests and handling responses.
+
+The class derives from `GraphServiceClient` but it implements additional code to communicate with the `RequestManager`. A key, but not very pretty, component is the `DummyHttpProvider` which is used to intercept the requests that `GraphServiceClient` would normally send over the network, and queue them with the `RequestManager` instead. At the moment, that is the only way to fully leverage the Graph SDK request building capabilities.
+
+Note that for this reason, when building requests it is necessary to "pretend" to fully execute them and await them - this guarantees that the underlying Graph SDK code is fully executed and any errors related to request building are thrown on the executing thread. Here is an example of how this is done - the request is not actually executed, since the builder captures it internally and queues it up for background execution:
+
+```csharp
+    graphRequestBuilder.Users.Request().Top(999).Filter(filter).GetAsync().Wait();
+```
+
+You use the `Dispose()` method to tell the builder that you are done adding more requests to the queue. It's a good idea to instantiate the builder in a `using` block to make sure it correctly signals that no more requests are possible. Otherwise, the internal code will wait indefinitely expecting more requests to come in.
+
+#### ResultAggregator
 `ResultAggregator` is used to communicate
 
 
@@ -35,11 +52,7 @@ $$$Note how requests are built using standard Graph SDK syntax.
 
 
 
-## TBD: Goals of the design: parallel, batching and SDK integration for ease of use
 
-## TBD: RequestManager - what it does
-
-## TBD: How to make this run (e.g. set up your app and authentication)
 
 ## TBD: Other remarks
 
