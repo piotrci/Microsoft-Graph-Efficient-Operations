@@ -12,6 +12,9 @@ $$$Reference the Ignite talk
 
 ## TBD: How to make this run (e.g. set up your app and authentication)
 
+$$$note that user sign in is from scratch everytime
+$$$warning about modifying data
+
 ## Design details
 
 These are the main components of the solution:
@@ -43,11 +46,34 @@ Note that for this reason, when building requests it is necessary to "pretend" t
 You use the `Dispose()` method to tell the builder that you are done adding more requests to the queue. It's a good idea to instantiate the builder in a `using` block to make sure it correctly signals that no more requests are possible. Otherwise, the internal code will wait indefinitely expecting more requests to come in.
 
 #### ResultAggregator
-`ResultAggregator` is used to communicate
 
+`ResultAggregator` is used to deliver results back to your code. Internally, it uses `BlockingCollection<T>` which enables an easy to work with programming model. You can simply enumerate your results and your thread will be blocked if we are waiting for the Graph service to respond with more results. Response handlers add results to the aggregator as soon as they become available, so your code can continue executing its business logic without having to wait for everything to complete.
 
+There are factory methods on the "builder" classes that return an instance of an enumerator for you to use - the enumerators are backed by a `ResultAggregator` instance.
+
+#### How all this comes together
+
+A simple scenario implementation look like this (see comments inline):
+
+```csharp
+public static IEnumerable<User> GetAllUsers(RequestManager requestManager)  // RequestManager can be provided from the outside, e.g. if you want to share it accross your entire program
+        {
+            IEnumerable<User> users;    // this is where the results will start showing up
+            using (var builder = GraphRequestBuilder<User>.GetBuilder<UserCollectionResponseHandler>(requestManager, out users))    // use factory method to get a builder for this request type. internally, a ResponseHandler and a ResultAggregator are created to plug into the RequestManager.
+            {
+                foreach (var filter in GenericHelpers.GenerateFilterRangesForAlphaNumProperties("userPrincipalName"))
+                {
+                    builder.Users.Request().Top(999).Filter(filter).GetAsync().Wait(); 
+                    // We are using standard Graph SDK syntax to build the request.
+                    // the .GetAsync().Wait() part doesn't actually cause the request to execute here.  DummyHttpProvider is used to intercept the request and queue it.
+                    // It is important to call these methods: <verb>Async() causes the SDK to properly build the request. Wait() executes the faux-request here, to throw any exceptions - without it the code would continue even thought the request was not properly built.
+                }
+            }   // exitting the using block calls Dispose() on the builder, which tells it to stop queueing requests. This is important to make the result enumerator terminate, otherwise it will hang waiting for more potential responses.
+            return users; // we are returning the result collection before the requests were executed. That is OK, the calling code can enumerate and wait, or it can decide to only take a few results and cancell the execution of the outstanding requests.
+```
 
 ### ScenarioImplementations
+
 $$$Note how requests are built using standard Graph SDK syntax.
 
 
