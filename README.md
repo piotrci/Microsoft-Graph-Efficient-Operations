@@ -74,11 +74,14 @@ public static IEnumerable<User> GetAllUsers(RequestManager requestManager)  // R
 
 ### ScenarioImplementations
 
-$$$Note how requests are built using standard Graph SDK syntax.
+This project contains sample implementations of scenarios, using the `EfficientRequestHandling` components. It demonstrates how you can use a simple pattern and retain the Graph SDK syntax to execute high volume bulk operations, fast. Sample scenarios include:
 
-
-
-
+- `UserScenarios`: getting all users in a tenant.
+- `GroupScenarios`: getting all groups with members.
+- `LicenseManagementScenarios`: assigning or removing product licenses on individual users.
+- `EmailScenarios`: getting full mailbox content for all users.
+- `DeviceScenarios`: creating a report of all devices registered in the tenant.
+- `DeltaQueryScenarios`: an optimized way to initialize a delta query for large resource collections (e.g. users or groups)
 
 ## TBD: Other remarks
 
