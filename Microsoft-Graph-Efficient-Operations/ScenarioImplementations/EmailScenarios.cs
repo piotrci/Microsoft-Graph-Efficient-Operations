@@ -10,9 +10,16 @@ namespace ScenarioImplementations
 {
     public static class EmailScenarios
     {
+        /// <summary>
+        /// Gets full mailbox content for each user in the tenant.
+        /// </summary>
+        /// <see cref="GroupScenarios.GetAllGroupsWithMembers(RequestManager)GetAllGroupsWithMembers">The approach taken here is the same as in the scenario for downloading all groups with members.</see>
+        /// <param name="requestManager"></param>
+        /// <returns></returns>
         public static IEnumerable<User> GetAllUsersWithCompleteMailboxes(RequestManager requestManager)
         {
-            // Step 1: start downloading user objects using partitioning
+            // Step 1: start downloading user objects using partitioning. We need to get users first, so we can build requests for Messages
+            
             // This will return users as they become available from concurrent response handlers
             IEnumerable<User> users;
             using (var builder = GraphRequestBuilder<User>.GetBuilder<UserCollectionResponseHandler>(requestManager, out users))

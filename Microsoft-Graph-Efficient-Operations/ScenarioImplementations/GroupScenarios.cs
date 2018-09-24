@@ -12,7 +12,7 @@ namespace ScenarioImplementations
     {
         /// <summary>
         /// Gets all groups in the tenant, with all their members.
-        /// Today, Graph's $expand parameter cannot be used to download all members in a group, it just gets the top N members
+        /// Today, Graph's $expand parameter cannot be used to download all members in a group, it just gets the top N members.
         /// The approach taken here is to download group objects first (which do not contain members), and then get all members of each group.
         /// We can optimize this futher by parallelizing requests to get groups with requests to get members - this way we don't have to wait
         /// for all groups to download before we start fetching members.
@@ -34,6 +34,7 @@ namespace ScenarioImplementations
                     // Instead, it queues it up with the RequestManager for background execution. The reason we call GetAsync().Wait() is to force the code internal to the Graph SDK
                     // to fully execute and build the final request.
                     // The Top() expression is used to maximize the size of each result page. 999 is the maximum size for the Group collection.
+                    // Other query parameters could be added here, too, for example we could use Select() to control which properties will be returned.
                     builder.Groups.Request().Top(999).Filter(filter).GetAsync().Wait();
                 }
             }

@@ -39,6 +39,7 @@ namespace ScenarioImplementations
                     // Instead, it queues it up with the RequestManager for background execution. The reason we call GetAsync().Wait() is to force the code internal to the Graph SDK
                     // to fully execute and build the final request.
                     // The Top() expression is used to maximize the size of each result page. 999 is the maximum size for the User collection.
+                    // Other query parameters could be added here, too, for example we could use Select() to control which properties will be returned.
                     builder.Users.Request().Top(999).Filter(filter).GetAsync().Wait();
 
                     // Note that with normal SDK usage the above call would only give us the first page of results.
