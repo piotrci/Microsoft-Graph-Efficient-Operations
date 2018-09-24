@@ -4,7 +4,36 @@ Code demonstrating how you can efficiently access and modify Microsoft 365 data 
 
 ## TBD: Overview
 
+This console application can be used to execute sample scenarios that perform bulk operations on tenant's Microsoft 365 data, such as users, groups, email messages, etc, using Microsoft Graph APIs($$$link to MS Graph website).
+
+The implementation demonstrates how we can optimize interaction with Graph to drammatically reduce the time of bulk operations at scale. For example, using a traditional, sequential approach it takes around 5.5 minutes to get 100,000 users using Graph or the equivalent PowerShell cmdlets (e.g. Get-AzureAdUser). Using parallelization and batching, as shown in `UserScenarios.GetAllUsers` it takes only  18 seconds (a 18X improvement in execution time).
+
 $$$Reference the Ignite talk
+
+These are the main components of the solution:
+
+### EfficientRequestHandling
+
+#### RequestManager
+
+The `RequestManager` class is at the core of the solution. It manages a background task that executes Microsoft Graph requests efficiently. It uses parallelization to use multiple network connections to Graph to increase request throughput. Internally, it aggregates multiple requests into batches (using the $batch capability in Graph) - this allows us to optimize the scenarios where we have many small requests (such as modifying a lot of users). It also internally handles basic network errors and throttling, and implements retries.
+
+The main goal of the `RequestManager` is to abstract away the complexity of parallel execution and batch management. The class doesn't know about particular types of requests, it only executes them. It allows you to build and queue your requests using the standard Graph client SDK for .NET ($$$Link). Internally, it uses specialized response handlers to return results. Those handlers can be specialized - for example `CollectionResponseHandler` knows how to interpret responses for collections (e.g. Users, Groups, Messages) - which use pages of results - and queues more requests with `RequestManager` to enumerate an entire collection.
+
+Note that since `RequestManager` is agnostic of the types of requests it processes, you can use a single instance to queue many different requests, in any order. The manager will process them from the queue, and may batch them together. You can create separate instances of the manager if you want to handle different types of requests separately, for example to differently configure the level of concurrency or the size of batches.
+
+#### RequestBuilder
+
+$$$Mention the hacky interception from SDK
+####
+`ResultAggregator` is used to communicate
+
+
+
+### ScenarioImplementations
+$$$Note how requests are built using standard Graph SDK syntax.
+
+
 
 ## TBD: Goals of the design: parallel, batching and SDK integration for ease of use
 
