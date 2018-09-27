@@ -31,7 +31,7 @@ namespace DemoApp
                 EfficientRequestHandling.Logger.SetLogger(new OutputLogger(Console.OpenStandardOutput(), System.IO.File.Open("log.txt", FileMode.Create, FileAccess.Write, FileShare.Read)));
 
                 // go to a specific scenario
-                goto getAllUsers;
+                goto getAllGroupsWithMembers;
 
 #pragma warning disable CS0164
 #pragma warning disable CS0162

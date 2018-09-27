@@ -20,7 +20,7 @@ namespace DemoApp
     /// </summary>
     static partial class AuthSettings
     {
-        public static readonly bool isUserAuthentication = true;                    // controls if we will try to authenticate as user, or as app. depends on the type of app and permissions you are using
+        public static readonly bool isUserAuthentication = true;    // controls if we will try to authenticate as user, or as app. depends on the type of app and permissions you are using
         public static readonly string applicationId = null;                           // the Guid ID of your app registered with Azure AD
         public static readonly string[] scopes = null;                              // if the app uses delegated (user) permissions, list the scopes it needs to request here. otherwise, leave null
         public static readonly ClientCredential secretClientCredentials = null;     // initialize your secret client credentials. Certificate or "app password"

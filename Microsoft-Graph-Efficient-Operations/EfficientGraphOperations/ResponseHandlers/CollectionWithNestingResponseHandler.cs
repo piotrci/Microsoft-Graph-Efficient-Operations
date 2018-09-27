@@ -32,6 +32,7 @@ namespace EfficientRequestHandling.ResponseHandlers
                 {
                     nestedCollection.Add(item);
                 }
+                Logger.WriteLine($"Finished downloading {parentItem.GetType()} with child item count: {nestedCollection.Count}");
                 this.ReturnResponse(parentItem);
             }
             finally

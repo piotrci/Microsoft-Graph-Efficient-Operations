@@ -40,7 +40,7 @@ namespace EfficientRequestHandling.RequestBuilders
                 Logger.WriteLine($"Results returned for entity {typeof(TEntity).Name}: {currentCount}");
             }
         }
-        private int successResponseCount;
+        private int successResponseCount = 0;
         
         private bool noMoreAdding = false;
         public void NoMoreAdding()
