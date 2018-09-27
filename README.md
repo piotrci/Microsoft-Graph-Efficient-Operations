@@ -4,13 +4,13 @@ Code demonstrating how you can efficiently access and modify Microsoft 365 data 
 
 ## Overview
 
-This console application can be used to execute sample scenarios that perform bulk operations on tenant's Microsoft 365 data, such as users, groups, email messages, etc, using Microsoft Graph APIs($$$link to MS Graph website).
+This console application can be used to execute sample scenarios that perform bulk operations on tenant's Microsoft 365 data, such as users, groups, email messages, etc, using [Microsoft Graph APIs](https://developer.microsoft.com/en-us/graph).
 
 The implementation demonstrates how we can optimize interaction with Graph to drammatically reduce the time of bulk operations at scale. For example, using a traditional, sequential approach it takes around 5.5 minutes to get 100,000 users using Graph or the equivalent PowerShell cmdlets (e.g. Get-AzureAdUser). Using parallelization and batching, as shown in `UserScenarios.GetAllUsers` it takes only  18 seconds (a 18X improvement in execution time).
 
 Check out this Microsoft Ignite 2018 talk for an overview of this approach: [THR2159 - How to perform large scale operations efficiently using Microsoft Graph](https://myignite.techcommunity.microsoft.com/sessions/65997?source=sessions#ignite-html-anchor)
 
-## TBD: How to make this run (e.g. set up your app and authentication)
+## How to make this run (e.g. set up your app and authentication)
 
 You can play around with the samples scenarios by executing the `DemoApp` console application. The code supports simple authentication using either user delegated mode (where the code runs under user permissions) or app-only mode (the app itself has permissions and does not require user sign in). Both are useful depending on the scenarios you want to try out (e.g. to be able to get all users' mailboxes you must use app only permissions, with admin consent).
 
@@ -41,7 +41,7 @@ These are the main components of the solution:
 
 The `RequestManager` class is at the core of the solution. It manages a background task that executes Microsoft Graph requests efficiently. It uses parallelization to use multiple network connections to Graph to increase request throughput. Internally, it aggregates multiple requests into batches (using the $batch capability in Graph) - this allows us to optimize the scenarios where we have many small requests (such as modifying a lot of users). It also internally handles basic network errors and throttling, and implements retries.
 
-The main goal of the `RequestManager` is to abstract away the complexity of parallel execution and batch management. The class doesn't know about particular types of requests, it only executes them. It allows you to build and queue your requests using the standard Graph client SDK for .NET ($$$Link). Internally, it uses specialized response handlers to return results. Those handlers can be specialized - for example `CollectionResponseHandler` knows how to interpret responses for collections (e.g. Users, Groups, Messages) - which use pages of results - and queues more requests with `RequestManager` to enumerate an entire collection.
+The main goal of the `RequestManager` is to abstract away the complexity of parallel execution and batch management. The class doesn't know about particular types of requests, it only executes them. It allows you to build and queue your requests using the standard Graph client [SDK for .NET](https://www.nuget.org/packages/Microsoft.Graph). Internally, it uses specialized response handlers to return results. Those handlers can be specialized - for example `CollectionResponseHandler` knows how to interpret responses for collections (e.g. Users, Groups, Messages) - which use pages of results - and queues more requests with `RequestManager` to enumerate an entire collection.
 
 Note that since `RequestManager` is agnostic of the types of requests it processes, you can use a single instance to queue many different requests, in any order. The manager will process them from the queue, and may batch them together. You can create separate instances of the manager if you want to handle different types of requests separately, for example to differently configure the level of concurrency or the size of batches.
 
