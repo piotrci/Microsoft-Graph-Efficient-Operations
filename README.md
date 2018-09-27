@@ -98,9 +98,3 @@ This project contains sample implementations of scenarios, using the `EfficientR
 - `EmailScenarios`: getting full mailbox content for all users.
 - `DeviceScenarios`: creating a report of all devices registered in the tenant.
 - `DeltaQueryScenarios`: an optimized way to initialize a delta query for large resource collections (e.g. users or groups)
-
-## TBD: Other remarks
-
-### Why the mess with handlers, etc., various types - SDK driven, should get better
-
-Parts of the code are more complex/ugly than they should be. SDK types
